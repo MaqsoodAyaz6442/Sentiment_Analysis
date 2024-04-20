@@ -2,7 +2,7 @@
 FROM python:3.9
 
 # Set environment variables
-ENV PORT=8000
+ENV PORT=8080
 ENV HOST=0.0.0.0
 
 # Set the working directory in the container
