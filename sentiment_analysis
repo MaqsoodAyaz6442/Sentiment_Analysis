@@ -1,0 +1,25 @@
+from fastapi import FastAPI
+import gradio as gr
+from transformers import pipeline
+
+# Initialize FastAPI app
+app = FastAPI()
+
+# Load pretrained sentiment analysis model
+classifier = pipeline("text-classification", model="distilbert-base-uncased-finetuned-sst-2-english")
+
+# Define FastAPI endpoint
+@app.post("/classify_sentiment/")
+async def classify_sentiment(text: str):
+    # Make predictions using the loaded model
+    result = classifier(text)
+    return {"sentiment": result[0]['label'], "confidence": result[0]['score']}
+
+# Define Gradio interface
+gr.Interface(fn=classify_sentiment, inputs="text", outputs=["text", "text"]).launch(share=True)
+
+# Run FastAPI app
+# Note: This line will not execute in the Gradio interface
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8080)
