@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  fastapi:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    restart: always
+
+  ngrok:
+    image: wernight/ngrok
+    ports:
+      - "4040:4040"
+    command: ngrok http fastapi:8000
+    depends_on:
+      - fastapi
