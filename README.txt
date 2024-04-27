@@ -42,12 +42,12 @@ pip install -r requirements.txt
 Download Pre-trained Model: The pre-trained model will be automatically downloaded when the application starts.
 
 Build Docker Container: Use the provided Dockerfile to build the Docker container.
-docker build -t sentiment_analysis .
+docker build -t project_sentiment_analysis .
 
 Run Docker Container: Run the Docker container locally.
-docker run -d -p 8080:8080 sentiment_analysis .
+docker run -d -p 8000:8000 project_sentiment_analysis .
 
 Access API Documentation: Visit http://localhost:8080/docs to access the API documentation using Swagger UI.
-http://localhost:8080/docs#/default/classify_sentiment_classify_sentiment__post
+http://localhost:8000/docs#/default/analyze_text_get_analyze_get_post
 
 Test API Endpoints: Use the provided TestClient script (test_client.py) to run API tests.
